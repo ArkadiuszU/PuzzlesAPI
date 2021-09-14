@@ -23,14 +23,14 @@ namespace PuzzlesAPI.Controllers
         public PuzzleTaskController(IWebHostEnvironment _environment)
         {
             environment = _environment;
-            puzzletasks.Add(new PuzzleTask { Id = 1, Name = "Budapest", ImagePath = $"{environment.WebRootPath}/data/budapest.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 2, Name = "Amsterdam", ImagePath = $"{environment.WebRootPath}/data/amsterdam.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 3, Name = "Rome", ImagePath = $"{environment.WebRootPath}/data/rome.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 4, Name = "Berlin", ImagePath = $"{environment.WebRootPath}/data/berlin.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 5, Name = "Lisbon", ImagePath = $"{environment.WebRootPath}/data/lisbon.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 6, Name = "Brussels", ImagePath = $"{environment.WebRootPath}/data/brussels.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 7, Name = "London", ImagePath = $"{environment.WebRootPath}/data/london.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 8, Name = "Edinburgh", ImagePath = $"{environment.WebRootPath}/data/edinburgh.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 1, Name = "Budapest", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/budapest.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 2, Name = "Amsterdam", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/amsterdam.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 3, Name = "Rome", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/rome.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 4, Name = "Berlin", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/berlin.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 5, Name = "Lisbon", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/lisbon.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 6, Name = "Brussels", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/brussels.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 7, Name = "London", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/london.jpg" });
+            puzzletasks.Add(new PuzzleTask { Id = 8, Name = "Edinburgh", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/edinburgh.jpg" });
 
         }
 // GET: api/<PuzzleTaskController>
