@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PuzzlesAPI;
 using PuzzlesAPI.Entities;
+using PuzzlesAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +38,17 @@ namespace PuzzlesAPI_Project
             });
 
             services.AddControllers();
+            services.AddScoped<PuzzleSeeder>();
+            services.AddDbContext<PuzzleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PuzzleDbConnection")));
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PuzzlesAPI_Project", Version = "v1" });
             });
 
-            services.AddScoped<PuzzleSeeder>();
-            services.AddDbContext<PuzzleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PuzzleDbConnection")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

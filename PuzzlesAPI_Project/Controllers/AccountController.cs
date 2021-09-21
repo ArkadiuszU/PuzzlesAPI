@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PuzzlesAPI_Project.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class AccountController : ControllerBase
     {
