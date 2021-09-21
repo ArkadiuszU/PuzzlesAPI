@@ -16,52 +16,49 @@ namespace PuzzlesAPI.Controllers
     [ApiController]
     public class PuzzleTaskController : ControllerBase
     {
-        List<PuzzleTask> puzzletasks = new List<PuzzleTask>();
+        private readonly PuzzleDbContext _dbContext;
 
-        public PuzzleTaskController(IWebHostEnvironment _environment)
+        public PuzzleTaskController(PuzzleDbContext dbContext)
         {
-
-            puzzletasks.Add(new PuzzleTask { Id = 1, Name = "Budapest", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/budapest.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 2, Name = "Amsterdam", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/amsterdam.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 3, Name = "Rome", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/rome.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 4, Name = "Berlin", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/berlin.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 5, Name = "Lisbon", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/lisbon.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 6, Name = "Brussels", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/brussels.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 7, Name = "London", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/london.jpg" });
-            puzzletasks.Add(new PuzzleTask { Id = 8, Name = "Edinburgh", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/edinburgh.jpg" });
-
+            _dbContext = dbContext;
         }
-// GET: api/<PuzzleTaskController>
-[HttpGet]
+
+        [HttpGet]
         public IEnumerable<PuzzleTask> Get()
         {
-            return puzzletasks;
-               
+            var puzzleTasks = _dbContext.PuzzleTasks.ToList();
+            return puzzleTasks;
         }
 
-        // GET api/<PuzzleTaskController>/5
+
         [HttpGet("{id}")]
-        public PuzzleTask Get(int id)
+        public ActionResult<PuzzleTask> Get(int id)
         {
-            return puzzletasks.FirstOrDefault(x => x.Id == id);
+            var puzzleTask = _dbContext.PuzzleTasks.FirstOrDefault(p => p.Id == id);
+
+            if (puzzleTask is null)
+                return NotFound();
+
+            return Ok(puzzleTask);
+         
         }
 
-        // POST api/<PuzzleTaskController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/<PuzzleTaskController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/<PuzzleTaskController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<PuzzleTaskController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<PuzzleTaskController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<PuzzleTaskController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

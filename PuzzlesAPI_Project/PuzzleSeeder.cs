@@ -1,4 +1,5 @@
-﻿using PuzzlesAPI.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PuzzlesAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,13 @@ namespace PuzzlesAPI
         {
             if(_dbContext.Database.CanConnect())
             {
+               var pendingMigrations = _dbContext.Database.GetPendingMigrations();
+
+                if(pendingMigrations != null && pendingMigrations.Any())
+                {
+                    _dbContext.Database.Migrate();
+                }
+
                 if(!_dbContext.PuzzleTasks.Any())
                 {
                     var puzzleTasks = GetPuzzleTasks();
