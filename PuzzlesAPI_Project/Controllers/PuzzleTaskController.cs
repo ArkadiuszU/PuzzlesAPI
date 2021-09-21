@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using PuzzlesAPI.Models;
+using PuzzlesAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
