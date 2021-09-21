@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PuzzlesAPI.Entities;
 
 namespace PuzzlesAPI_Project.Migrations
 {
     [DbContext(typeof(PuzzleDbContext))]
-    partial class PuzzleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210921214731_UserAdd")]
+    partial class UserAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

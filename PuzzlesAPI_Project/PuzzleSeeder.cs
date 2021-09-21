@@ -26,12 +26,20 @@ namespace PuzzlesAPI
                     _dbContext.Database.Migrate();
                 }
 
-                if(!_dbContext.PuzzleTasks.Any())
+                if(!_dbContext.PuzzleRoles.Any())
+                {
+                    var roles = GetRoles();
+                    _dbContext.PuzzleRoles.AddRange(roles);
+                    _dbContext.SaveChanges();
+                }
+
+                if (!_dbContext.PuzzleTasks.Any())
                 {
                     var puzzleTasks = GetPuzzleTasks();
                     _dbContext.PuzzleTasks.AddRange(puzzleTasks);
                     _dbContext.SaveChanges();
                 }
+
             }
         }
 
@@ -48,5 +56,26 @@ namespace PuzzlesAPI
             puzzletasks.Add(new PuzzleTask { Name = "Edinburgh", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/edinburgh.jpg" });
             return puzzletasks;
         }
+
+        private IEnumerable<Role> GetRoles()
+        {
+            List<Role> roles = new List<Role>() {
+                new Role { Name = "Admin" }, 
+                new Role { Name = "User" }, 
+                new Role { Name = "Guest" }
+            };
+            
+            return roles;
+        }
+
+        //private IEnumerable<User> GetUsers()
+        //{
+        //    List<User> users = new List<User>() {
+        //        new User { FirstName = "admin",   },
+        //    };
+
+        //    return roles;
+        //}
+
     }
 }

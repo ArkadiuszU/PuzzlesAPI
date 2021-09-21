@@ -10,6 +10,8 @@ namespace PuzzlesAPI.Entities
     {
         public PuzzleDbContext(DbContextOptions<PuzzleDbContext> options) :base(options) { }
         public DbSet<PuzzleTask> PuzzleTasks { get; set; }
+        public DbSet<User> PuzzleUsers { get; set; }
+        public DbSet<Role> PuzzleRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PuzzleTask>()
@@ -17,6 +19,9 @@ namespace PuzzlesAPI.Entities
 
             modelBuilder.Entity<PuzzleTask>()
                 .Property(p => p.ImagePath).IsRequired();
+
+            modelBuilder.Entity<Role>()
+                .Property(p => p.Name).IsRequired();
 
         }
     }
