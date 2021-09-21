@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PuzzlesAPI;
 using PuzzlesAPI.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,14 +41,14 @@ namespace PuzzlesAPI_Project
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PuzzlesAPI_Project", Version = "v1" });
             });
 
-
+            services.AddScoped<PuzzleSeeder>();
             services.AddDbContext<PuzzleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PuzzleDbConnection")));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env , PuzzleSeeder seeder)
         {
+            seeder.Seed();
             app.UseStaticFiles();
 
             if (env.IsDevelopment())

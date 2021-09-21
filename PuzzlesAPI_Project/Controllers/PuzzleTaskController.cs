@@ -16,13 +16,11 @@ namespace PuzzlesAPI.Controllers
     [ApiController]
     public class PuzzleTaskController : ControllerBase
     {
-
-        private IWebHostEnvironment environment;
         List<PuzzleTask> puzzletasks = new List<PuzzleTask>();
 
         public PuzzleTaskController(IWebHostEnvironment _environment)
         {
-            environment = _environment;
+
             puzzletasks.Add(new PuzzleTask { Id = 1, Name = "Budapest", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/budapest.jpg" });
             puzzletasks.Add(new PuzzleTask { Id = 2, Name = "Amsterdam", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/amsterdam.jpg" });
             puzzletasks.Add(new PuzzleTask { Id = 3, Name = "Rome", ImagePath = $"https://puzzlesapi.azurewebsites.net/data/rome.jpg" });
