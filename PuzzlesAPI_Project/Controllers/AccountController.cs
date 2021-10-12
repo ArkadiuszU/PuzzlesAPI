@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using PuzzlesAPI.Entities;
 using PuzzlesAPI.Models;
 using PuzzlesAPI.Services;
 using System.Collections.Generic;
@@ -25,5 +26,21 @@ namespace PuzzlesAPI_Project.Controllers
 
             return Ok();
         }
+
+        [HttpPost("login")]
+        public ActionResult LoginUser([FromBody] LoginUserDto dto)
+        {
+            string token = _accountService.CenerateJwt(dto);
+
+            return Ok(token);
+        }
+
+
+        [HttpGet("allusers")]
+        public IEnumerable<User> Get()
+        {
+            return _accountService.GetAllUsers();
+        }
+
     }
 }
