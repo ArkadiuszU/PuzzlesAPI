@@ -19,7 +19,7 @@ namespace PuzzlesAPI.Services
     {
         public void RegisterUser(RegisterUserDto dto);
         public string CenerateJwt(LoginUserDto dto);
-        public IEnumerable<User> GetAllUsers();
+        public IEnumerable<GetUserDto> GetAllUsers();
 
     }
 
@@ -58,11 +58,16 @@ namespace PuzzlesAPI.Services
             _dbContext.SaveChanges();
         }
 
-
-
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<GetUserDto> GetAllUsers()
         {
-            return _dbContext.PuzzleUsers;
+            IEnumerable<GetUserDto> dtos = _dbContext.PuzzleUsers.Select(u => new GetUserDto()
+            {
+                Email = u.Email,
+                Name = $"{u.FirstName} {u.LastName}",
+                Role = u.Role.Name
+            }) ;
+
+            return dtos;
         }
 
         public string CenerateJwt(LoginUserDto dto)

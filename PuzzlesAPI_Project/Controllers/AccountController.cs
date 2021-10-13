@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using PuzzlesAPI.Entities;
 using PuzzlesAPI.Models;
@@ -37,7 +38,8 @@ namespace PuzzlesAPI_Project.Controllers
 
 
         [HttpGet("allusers")]
-        public IEnumerable<User> Get()
+        [Authorize(Roles = "Admin")]
+        public IEnumerable<GetUserDto> Get()
         {
             return _accountService.GetAllUsers();
         }
