@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PuzzlesAPI;
 using PuzzlesAPI.Entities;
+using PuzzlesAPI.Middleware;
 using PuzzlesAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,8 @@ namespace PuzzlesAPI_Project
             services.AddDbContext<PuzzleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PuzzleDbConnection")));
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<ErrorHandlingMiddleware>();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -80,6 +83,7 @@ namespace PuzzlesAPI_Project
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env , PuzzleSeeder seeder)
         {
             seeder.Seed();
+
             app.UseStaticFiles();
 
             if (env.IsDevelopment())
@@ -88,6 +92,8 @@ namespace PuzzlesAPI_Project
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PuzzlesAPI_Project v1"));
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseAuthentication();
 
@@ -98,6 +104,8 @@ namespace PuzzlesAPI_Project
             app.UseCors("AllowAllOrigins");
 
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {

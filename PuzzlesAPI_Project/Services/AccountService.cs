@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using PuzzlesAPI_Project;
 using System.IdentityModel.Tokens.Jwt;
+using PuzzlesAPI.Exceptions;
 
 namespace PuzzlesAPI.Services
 {
@@ -36,6 +37,12 @@ namespace PuzzlesAPI.Services
         }
         public void RegisterUser(RegisterUserDto dto)
         {
+
+            if (dto.RoleId == 0)
+            {
+                throw new NotFoundException("Role not found");
+            }
+
             var newUser = new User()
             {
                 Email = dto.Email,
@@ -49,7 +56,6 @@ namespace PuzzlesAPI.Services
 
             _dbContext.PuzzleUsers.Add(newUser);
             _dbContext.SaveChanges();
-
         }
 
 
