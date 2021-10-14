@@ -13,9 +13,19 @@ namespace PuzzlesAPI.Models
         [Required]
         [MinLength(6)]
         public string Password { get; set; }
-        public string FirstName { get; set; }
+        [Required]
+        [MinLength(6)]
+        public string RepeatPassword { get; set; }
+        [Required]
+        [MinLength(4)]
+        public string Nickname { get; set; }
+        public string Name { get; set; }
         public string LastName { get; set; }
-        public int RoleId { get; set; } = 2;
-       
+        [Required]
+        public bool Gender { get; set; }
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+        [Required]
+        public string Nation { get; set; }
     }
 }

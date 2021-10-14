@@ -37,21 +37,19 @@ namespace PuzzlesAPI.Services
         }
         public void RegisterUser(RegisterUserDto dto)
         {
-
-            if (dto.RoleId == 0)
-            {
-                throw new NotFoundException("Role not found");
-            }
-
             var newUser = new User()
             {
                 Email = dto.Email,
-                RoleId = dto.RoleId,
-                FirstName = dto.FirstName,
+                RoleId = 2,
+                FirstName = dto.Name,
                 LastName = dto.LastName,
+                Nickname = dto.Nickname,
+                Gender = dto.Gender,
+                DateOfBirth = dto.DateOfBirth,
+                Nation = dto.Nation
             };
 
-            var hashedPass = _passwordHasher.HashPassword(newUser, dto.Password);
+        var hashedPass = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPass;
 
             _dbContext.PuzzleUsers.Add(newUser);

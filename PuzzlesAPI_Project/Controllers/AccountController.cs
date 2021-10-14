@@ -7,7 +7,7 @@ using PuzzlesAPI.Services;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PuzzlesAPI_Project.Controllers
+namespace PuzzlesAPI.Controllers
 {
     [Route("api")]
     [ApiController]
@@ -35,7 +35,6 @@ namespace PuzzlesAPI_Project.Controllers
 
             return Ok(token);
         }
-
 
         [HttpGet("allusers")]
         [Authorize(Roles = "Admin")]
