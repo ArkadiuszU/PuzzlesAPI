@@ -67,6 +67,8 @@ namespace PuzzlesAPI_Project
             services.AddScoped<PuzzleSeeder>();
             services.AddDbContext<PuzzleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PuzzleDbConnection")));
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPuzzleTaskService, PuzzleTaskService>();
+            
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<ErrorHandlingMiddleware>();
 
