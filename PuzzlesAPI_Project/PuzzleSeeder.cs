@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PuzzlesAPI.Entities;
+using PuzzlesAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,15 +68,5 @@ namespace PuzzlesAPI
             
             return roles;
         }
-
-        //private IEnumerable<User> GetUsers()
-        //{
-        //    List<User> users = new List<User>() {
-        //        new User { FirstName = "admin",   },
-        //    };
-
-        //    return roles;
-        //}
-
     }
 }

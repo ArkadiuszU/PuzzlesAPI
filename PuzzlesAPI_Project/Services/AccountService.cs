@@ -89,9 +89,14 @@ namespace PuzzlesAPI.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                new Claim(ClaimTypes.Role, user.Role.Name)
+                new Claim(ClaimTypes.NameIdentifier, user.Nickname),
+                new Claim(ClaimTypes.Surname , user.LastName),
+                new Claim(ClaimTypes.Role, user.Role.Name),
+                new Claim(ClaimTypes.Gender, user.Gender.ToString()),
+                new Claim(ClaimTypes.Country, user.Nation),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.FirstName)
+
             };
 
 
