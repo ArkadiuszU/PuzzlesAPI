@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PuzzlesAPI.Entities;
 using PuzzlesAPI.Models;
@@ -14,10 +15,12 @@ namespace PuzzlesAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
+     
 
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
+          
         }
 
         [HttpPost("register")]
@@ -37,10 +40,10 @@ namespace PuzzlesAPI.Controllers
         }
 
         [HttpGet("allusers")]
-        [Authorize(Roles = "Admin")]
-        public IEnumerable<GetUserDto> Get()
+        //[Authorize(Roles = "Admin")]
+        public string Get()
         {
-            return _accountService.GetAllUsers();
+            return "All";
         }
 
     }

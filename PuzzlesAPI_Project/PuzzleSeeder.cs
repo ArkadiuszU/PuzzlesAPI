@@ -46,15 +46,18 @@ namespace PuzzlesAPI
  
         private IEnumerable<PuzzleTask> GetPuzzleTasks()
         {
+            string baseUrl = "https://localhost:5001";
+            baseUrl = "https://puzzlesapi.azurewebsites.net";
+
             List<PuzzleTask> puzzletasks = new List<PuzzleTask>();
-            puzzletasks.Add(new PuzzleTask { Name = "Budapest", ImagePath = $"https://localhost:5001/data/budapest.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Amsterdam", ImagePath = $"https://localhost:5001/data/amsterdam.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Rome", ImagePath = $"https://localhost:5001/data/rome.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Berlin", ImagePath = $"https://localhost:5001/data/berlin.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Lisbon", ImagePath = $"https://localhost:5001/data/lisbon.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Brussels", ImagePath = $"https://localhost:5001/data/brussels.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "London", ImagePath = $"https://localhost:5001/data/london.jpg" });
-            puzzletasks.Add(new PuzzleTask { Name = "Edinburgh", ImagePath = $"https://localhost:5001/data/edinburgh.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Budapest", ImagePath = $"{baseUrl}/data/budapest.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Amsterdam", ImagePath = $"{baseUrl}/data/amsterdam.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Rome", ImagePath = $"{baseUrl}/data/rome.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Berlin", ImagePath = $"{baseUrl}/data/berlin.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Lisbon", ImagePath = $"{baseUrl}/data/lisbon.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Brussels", ImagePath = $"{baseUrl}/data/brussels.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "London", ImagePath = $"{baseUrl}/data/london.jpg" });
+            puzzletasks.Add(new PuzzleTask { Name = "Edinburgh", ImagePath = $"{baseUrl}/data/edinburgh.jpg" });
             return puzzletasks;
         }
 
