@@ -88,7 +88,7 @@ namespace PuzzlesAPI_Project
 
             app.UseStaticFiles();
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
